@@ -14,6 +14,8 @@
       <div id="dateSelect" style="float: right;"></div>
       <div style="clear: both;"></div>
       <div id="graph"></div>
+      <div id="graph1"></div>
+      <div id="graph2"></div>
     </div>
     <div id="table"></div>
     <script>
@@ -21,6 +23,8 @@
       var propSelect  = $('#propSelect').MPPropertySelect();
       var dateSelect  = $('#dateSelect').MPDatepicker();
       var eventGraph  = $('#graph').MPChart({chartType: 'line'});
+      var eventGraph1  = $('#graph1').MPChart({chartType: 'line'});
+      var eventGraph2  = $('#graph2').MPChart({chartType: 'line'});
       var eventTable  = $('#table').MPTable({
         showPercentages: true,
         firstColHeader: 'Event'
@@ -34,6 +38,8 @@
         if (eventName) {
           MP.api.segment(eventName, propName, dateRange).done(function(results) {
             eventGraph.MPChart('setData', results);
+            eventGraph1.MPChart('setData', results);
+            eventGraph2.MPChart('setData', results);
             eventTable.MPTable('setData', results);
           });
         }
